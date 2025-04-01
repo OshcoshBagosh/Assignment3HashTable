@@ -99,10 +99,16 @@ public class Player {
         return false;
     }
 
+    /**
+     * Overrides hashcode method
+     * @return An int value of an object
+     */
     @Override
-    public int hashCode(){
-        return Objects.hash(this.name);
+    public int hashCode() {
+        int code = Math.abs(Objects.hash(this.name));
+        return code;
     }
+
 
 
 }

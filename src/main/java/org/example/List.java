@@ -1,11 +1,15 @@
 package org.example;
+
+/**
+ * This Class implements the properties of a singly Linked List
+ */
 public class List {
     /**
      * The Node class will hold the Player data in the list
      */
     public class Node{
-        private Player data;
-        private Node next;
+        public Player data;
+        public Node next;
 
         /**
          * Default constructor of Node class
@@ -15,6 +19,10 @@ public class List {
             this.next = null;
         }
 
+        /**
+         * Constructor that takes Player as data
+         * @param p
+         */
         public Node(Player p){
             this.data = p;
             this.next = null;
@@ -38,7 +46,28 @@ public class List {
      * @param other
      */
     public List(List other){
+        Node temp = other.head;
+        while (temp != null){
+            this.add(temp.data.createClone());
+            temp = temp.next;
+        }
+    }
 
+    /**
+     *
+     * @return Deep copy of original clone
+     */
+    public List createClone(){
+        List clone = new List(this);
+        return clone;
+    }
+
+    /**
+     *
+     * @return head of List
+     */
+    public Node getHead(){
+        return this.head;
     }
 
     /**
@@ -67,7 +96,7 @@ public class List {
      */
     public Player find(String name){
         Node temp = head;
-        while (temp.next != null){
+        while (temp != null){
             if (temp.data.getName().equals(name))
                 return temp.data;
             temp = temp.next;
